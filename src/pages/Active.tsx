@@ -10,7 +10,6 @@ import "./Home.css";
 
 export function Active() {
   const [list, setList] = useState<ItemType[]>([]);
-
   const history = filteredTasks(false);
 
   useEffect(() => {

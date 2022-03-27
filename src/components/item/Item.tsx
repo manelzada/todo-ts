@@ -17,6 +17,7 @@ export function Item({ item, handleDeleteTask, unalterable }: Props) {
   const [isChecked, setIsChecked] = useState(item.complete);
   const [isEditing, setIsEditing] = useState(false);
   const [inputValue, setInputText] = useState(item.name);
+  const [attKey, setAttKey] = useState(0);
   const toggleEditing = () => setIsEditing((value) => !value);
   updateTaskValue(item.id, item.name, isChecked);
 
@@ -34,6 +35,7 @@ export function Item({ item, handleDeleteTask, unalterable }: Props) {
               item.name = inputValue;
               setInputText("");
               toggleEditing();
+              setAttKey((key) => key + 1);
             }
           }}
         />
