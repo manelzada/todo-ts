@@ -3,6 +3,7 @@ import "./Item.css";
 
 import { ItemType } from "../../types/ItemType";
 import { useState } from "react";
+import { updateCheckedValue } from "../../services/todoServices";
 
 type Props = {
   item: ItemType;
@@ -11,6 +12,8 @@ type Props = {
 
 export function Item({ item, handleDeleteTask }: Props) {
   const [isChecked, setIsChecked] = useState(item.complete);
+
+  updateCheckedValue(item.id, item.name, isChecked);
 
   return (
     <div className="item_card">
@@ -35,7 +38,10 @@ export function Item({ item, handleDeleteTask }: Props) {
             className="select_btn"
             type="checkbox"
             checked={isChecked}
-            onChange={(e) => setIsChecked(e.target.checked)}
+            onChange={(e) => {
+              setIsChecked(e.target.checked);
+              updateCheckedValue;
+            }}
           />
         </span>
       </div>

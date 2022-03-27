@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 import { useState } from "react";
 
@@ -10,7 +10,7 @@ import "./App.css";
 import { Input } from "./components/input/Input";
 import { Item } from "./components/item/Item";
 
-function App() {
+export default function App() {
   const [list, setList] = useState<ItemType[]>([]);
   const handleTask = (taskName: string) => {
     let newList = [...list];
@@ -77,5 +77,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
