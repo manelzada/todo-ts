@@ -6,9 +6,10 @@ import { useState } from "react";
 
 type Props = {
   item: ItemType;
+  handleDeleteTask(index: number): void;
 };
 
-export function Item({ item }: Props) {
+export function Item({ item, handleDeleteTask }: Props) {
   const [isChecked, setIsChecked] = useState(item.complete);
 
   return (
@@ -18,10 +19,15 @@ export function Item({ item }: Props) {
         {item.name}{" "}
       </p>
       <div className="line2">
-        <span className="btn_card" onClick={() => {}}>
-          <AiTwotoneEdit />
-        </span>
-        <span className="btn_card" onClick={() => {}}>
+        {!isChecked ? (
+          <span className="btn_card" onClick={() => {}}>
+            <AiTwotoneEdit />
+          </span>
+        ) : (
+          <span></span>
+        )}
+
+        <span className="btn_card" onClick={() => handleDeleteTask(item.id)}>
           <AiFillDelete />
         </span>
         <span>

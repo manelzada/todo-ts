@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { ItemType } from "./types/ItemType";
 
-import { saveData, getData } from "./services/todoServices";
+import { saveData, getData, removeData } from "./services/todoServices";
 
 import "./App.css";
 import { Input } from "./components/input/Input";
@@ -35,7 +35,8 @@ function App() {
   }, []);
 
   function loadHistory() {
-    let historyList = [...history];
+    //@ts-ignore
+    let historyList = [];
     history.map(
       //@ts-ignore
       (todos) =>
@@ -43,9 +44,21 @@ function App() {
           id: todos["id"],
           name: todos["name"],
           complete: todos["complete"],
-        }),
-      setList(historyList)
+        })
     );
+    //@ts-ignore
+    setList(historyList);
+  }
+
+  function handleDeleteTask(id: number) {
+    console.log(`id: ${id}`);
+    const newList = list.filter((task) => task.id !== id);
+    setList(newList);
+    try {
+      removeData(id);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
@@ -57,7 +70,9 @@ function App() {
         onEnter={handleTask}
       />
       {list.map((item, index) => (
-        <div key={index}>{<Item key={index} item={item} />}</div>
+        <div key={index}>
+          {<Item key={index} item={item} handleDeleteTask={handleDeleteTask} />}
+        </div>
       ))}
     </div>
   );

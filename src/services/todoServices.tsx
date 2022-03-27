@@ -11,3 +11,13 @@ export const getData = () => {
   }
   return JSON.parse(storedTasks);
 };
+
+export const removeData = (id: number) => {
+  const storedTasks = localStorage.getItem("tasks");
+  if (!storedTasks) {
+    return [];
+  }
+  //@ts-ignore
+  const removedTask = JSON.parse(storedTasks).filter((item) => item.id !== id);
+  localStorage.setItem("tasks", JSON.stringify(removedTask));
+};
