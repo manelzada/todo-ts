@@ -24,7 +24,7 @@ export const removeData = (id: number) => {
   localStorage.setItem("tasks", JSON.stringify(removedTask));
 };
 
-export const updateCheckedValue = (
+export const updateTaskValue = (
   id: number,
   name: string,
   complete: boolean
