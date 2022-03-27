@@ -1,6 +1,8 @@
 import { AiFillDelete, AiTwotoneEdit } from "react-icons/ai";
 import "./Item.css";
 
+import { useEffect } from "react";
+
 import { ItemType } from "../../types/ItemType";
 import { useState, KeyboardEvent } from "react";
 import { updateTaskValue } from "../../services/todoServices";
@@ -8,9 +10,10 @@ import { updateTaskValue } from "../../services/todoServices";
 type Props = {
   item: ItemType;
   handleDeleteTask(index: number): void;
+  unalterable?: boolean;
 };
 
-export function Item({ item, handleDeleteTask }: Props) {
+export function Item({ item, handleDeleteTask, unalterable }: Props) {
   const [isChecked, setIsChecked] = useState(item.complete);
   const [isEditing, setIsEditing] = useState(false);
   const [inputValue, setInputText] = useState(item.name);
@@ -41,10 +44,14 @@ export function Item({ item, handleDeleteTask }: Props) {
       )}
 
       <div className="line2">
-        {!isChecked ? (
-          <span className="btn_card" onClick={toggleEditing}>
-            <AiTwotoneEdit />
-          </span>
+        {!unalterable ? (
+          !isChecked ? (
+            <span className="btn_card" onClick={toggleEditing}>
+              <AiTwotoneEdit />
+            </span>
+          ) : (
+            <span></span>
+          )
         ) : (
           <span></span>
         )}

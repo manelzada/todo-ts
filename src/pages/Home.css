@@ -12,23 +12,28 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  outline: none;
 }
 
 .container h1 {
   color: #00c6cf;
+  transition: 250ms;
 }
 
-.container button {
+.container h1:hover {
+  color: #f9f871;
+}
+
+.container .btn {
   border: none;
-  background-color: #00c6cf;
-  margin: 15px 32px;
+  margin: 15px 10px;
   color: #fff;
-  font-size: 25px;
-  transition: 2s;
+  font-size: 20px;
+  transition: 1s;
   border-radius: 10px;
-  width: 250px;
+  width: 200px;
 }
 
-.container button:hover {
-  color: #fbfb33;
+.container .btn:hover {
+  background-color: #00c6cf;
 }

@@ -24,6 +24,15 @@ export const removeData = (id: number) => {
   localStorage.setItem("tasks", JSON.stringify(removedTask));
 };
 
+export const filteredTasks = (complete: boolean) => {
+  const storedTasks = localStorage.getItem("tasks");
+  if (!storedTasks) {
+    return [];
+  }
+  //@ts-ignore
+  return JSON.parse(storedTasks).filter((item) => item.complete == complete);
+};
+
 export const updateTaskValue = (
   id: number,
   name: string,
