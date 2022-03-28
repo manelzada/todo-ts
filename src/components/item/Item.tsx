@@ -1,8 +1,6 @@
 import { AiFillDelete, AiTwotoneEdit } from "react-icons/ai";
 import "./Item.css";
 
-import { useEffect } from "react";
-
 import { ItemType } from "../../types/ItemType";
 import { useState, KeyboardEvent } from "react";
 import { updateTaskValue } from "../../services/todoServices";
@@ -35,7 +33,7 @@ export function Item({ item, handleDeleteTask, unalterable }: Props) {
               item.name = inputValue;
               setInputText("");
               toggleEditing();
-              setAttKey((key) => key + 1);
+              
             }
           }}
         />
@@ -58,7 +56,8 @@ export function Item({ item, handleDeleteTask, unalterable }: Props) {
           <span></span>
         )}
 
-        <span className="btn_card" onClick={() => handleDeleteTask(item.id)}>
+        {!isEditing ? <>
+          <span className="btn_card" onClick={() => {handleDeleteTask(item.id); setIsChecked(item.complete) }}>
           <AiFillDelete />
         </span>
         <span>
@@ -72,6 +71,7 @@ export function Item({ item, handleDeleteTask, unalterable }: Props) {
             }}
           />
         </span>
+        </> : <span></span> }
       </div>
     </div>
   );
