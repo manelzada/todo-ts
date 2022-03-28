@@ -33,7 +33,7 @@ export function Item({ item, handleDeleteTask, unalterable }: Props) {
               item.name = inputValue;
               setInputText("");
               toggleEditing();
-              
+              setAttKey((key) => key + 1);
             }
           }}
         />
