@@ -59,7 +59,8 @@ export function Item({ item, handleDeleteTask }: Props) {
           <span></span>
         )}
 
-        <span className="btn_card" onClick={() => handleDeleteTask(item.id)}>
+        {!isEditing ? <>
+          <span className="btn_card" onClick={() => {handleDeleteTask(item.id); setIsChecked(item.complete) }}>
           <AiFillDelete />
         </span>
         <span>
@@ -73,6 +74,7 @@ export function Item({ item, handleDeleteTask }: Props) {
             }}
           />
         </span>
+        </> : <span></span> }
       </div>
     </div>
   );
