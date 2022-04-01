@@ -27,15 +27,12 @@ export function Item({ item, handleDeleteTask }: Props) {
           value={inputValue}
           onChange={(e) => {
             setInputText(e.target.value);
-            console.log(inputValue);
           }}
           onKeyUp={(e: KeyboardEvent) => {
             if (e.code === "Enter" && inputValue !== "") {
               updateTaskValue(item.id, inputValue, isChecked);
               item.name = inputValue;
-              setInputText("");
               toggleEditing();
-              setAttKey((key) => key + 1);
             }
           }}
         />
@@ -51,6 +48,7 @@ export function Item({ item, handleDeleteTask }: Props) {
             className="btn_card"
             onClick={() => {
               toggleEditing();
+              setAttKey((key) => key + 1);
             }}
           >
             <AiTwotoneEdit />
@@ -59,22 +57,32 @@ export function Item({ item, handleDeleteTask }: Props) {
           <span></span>
         )}
 
-        {!isEditing ? <>
-          <span className="btn_card" onClick={() => {handleDeleteTask(item.id); setIsChecked(item.complete) }}>
-          <AiFillDelete />
-        </span>
-        <span>
-          <input
-            className="select_btn"
-            type="checkbox"
-            checked={isChecked}
-            onChange={(e) => {
-              setIsChecked(e.target.checked);
-              updateTaskValue;
-            }}
-          />
-        </span>
-        </> : <span></span> }
+        {!isEditing ? (
+          <>
+            <span
+              className="btn_card"
+              onClick={() => {
+                handleDeleteTask(item.id);
+                setIsChecked(item.complete);
+              }}
+            >
+              <AiFillDelete />
+            </span>
+            <span>
+              <input
+                className="select_btn"
+                type="checkbox"
+                checked={isChecked}
+                onChange={(e) => {
+                  setIsChecked(e.target.checked);
+                  updateTaskValue;
+                }}
+              />
+            </span>
+          </>
+        ) : (
+          <span></span>
+        )}
       </div>
     </div>
   );
