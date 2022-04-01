@@ -30,8 +30,6 @@ export function Complete() {
     );
     //@ts-ignore
     setList(historyList);
-    //@ts-ignore
-    console.log(historyList);
   }
 
   function handleDeleteTask(id: number) {
@@ -49,14 +47,7 @@ export function Complete() {
     <div className="container">
       {list.map((task, index) => (
         <div key={index}>
-          {
-            <Item
-              key={index}
-              item={task}
-              handleDeleteTask={handleDeleteTask}
-              unalterable={true}
-            />
-          }
+          {<Item key={index} item={task} handleDeleteTask={handleDeleteTask} />}
         </div>
       ))}
     </div>

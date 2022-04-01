@@ -54,6 +54,7 @@ export default function Home() {
     console.log(`id: ${id}`);
     const newList = list.filter((task) => task.id !== id);
     setList(newList);
+    console.log("TESTANDo");
     try {
       removeData(id);
     } catch (err) {

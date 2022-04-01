@@ -1,8 +1,6 @@
 import { AiFillDelete, AiTwotoneEdit } from "react-icons/ai";
 import "./Item.css";
 
-import { useEffect } from "react";
-
 import { ItemType } from "../../types/ItemType";
 import { useState, KeyboardEvent } from "react";
 import { updateTaskValue } from "../../services/todoServices";
@@ -10,10 +8,9 @@ import { updateTaskValue } from "../../services/todoServices";
 type Props = {
   item: ItemType;
   handleDeleteTask(index: number): void;
-  unalterable?: boolean;
 };
 
-export function Item({ item, handleDeleteTask, unalterable }: Props) {
+export function Item({ item, handleDeleteTask }: Props) {
   const [isChecked, setIsChecked] = useState(item.complete);
   const [isEditing, setIsEditing] = useState(false);
   const [inputValue, setInputText] = useState(item.name);
@@ -28,7 +25,10 @@ export function Item({ item, handleDeleteTask, unalterable }: Props) {
           className="input_field"
           type="text"
           value={inputValue}
-          onChange={(e) => setInputText(e.target.value)}
+          onChange={(e) => {
+            setInputText(e.target.value);
+            console.log(inputValue);
+          }}
           onKeyUp={(e: KeyboardEvent) => {
             if (e.code === "Enter" && inputValue !== "") {
               updateTaskValue(item.id, inputValue, isChecked);
@@ -46,14 +46,15 @@ export function Item({ item, handleDeleteTask, unalterable }: Props) {
       )}
 
       <div className="line2">
-        {!unalterable ? (
-          !isChecked ? (
-            <span className="btn_card" onClick={toggleEditing}>
-              <AiTwotoneEdit />
-            </span>
-          ) : (
-            <span></span>
-          )
+        {!isChecked ? (
+          <span
+            className="btn_card"
+            onClick={() => {
+              toggleEditing();
+            }}
+          >
+            <AiTwotoneEdit />
+          </span>
         ) : (
           <span></span>
         )}
