@@ -25,6 +25,7 @@ body {
 }
 
 .container .btn {
+  background-color: #869da4;
   border: none;
   margin: 15px 10px;
   color: #fff;

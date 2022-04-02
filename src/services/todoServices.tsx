@@ -1,4 +1,3 @@
-import { Item } from "../components/item/Item";
 import { ItemType } from "../types/ItemType";
 
 export const saveData = (data: ItemType[]) => {
@@ -20,7 +19,6 @@ export const removeData = (id: number) => {
   }
   //@ts-ignore
   const removedTask = JSON.parse(storedTasks).filter((item) => item.id !== id);
-  console.log(removedTask);
   localStorage.setItem("tasks", JSON.stringify(removedTask));
 };
 

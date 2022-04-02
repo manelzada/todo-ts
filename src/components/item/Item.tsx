@@ -14,7 +14,6 @@ export function Item({ item, handleDeleteTask }: Props) {
   const [isChecked, setIsChecked] = useState(item.complete);
   const [isEditing, setIsEditing] = useState(false);
   const [inputValue, setInputText] = useState(item.name);
-  const [attKey, setAttKey] = useState(0);
   const toggleEditing = () => setIsEditing((value) => !value);
   updateTaskValue(item.id, item.name, isChecked);
 
@@ -48,7 +47,6 @@ export function Item({ item, handleDeleteTask }: Props) {
             className="btn_card"
             onClick={() => {
               toggleEditing();
-              setAttKey((key) => key + 1);
             }}
           >
             <AiTwotoneEdit />

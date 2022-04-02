@@ -33,7 +33,6 @@ export function Active() {
   }
 
   function handleDeleteTask(id: number) {
-    console.log(`id: ${id}`);
     const newList = list.filter((task) => task.id !== id);
     setList(newList);
     try {
