@@ -7,6 +7,10 @@ body {
   margin: 0 auto;
 }
 
+a {
+  text-decoration: none;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -18,6 +22,7 @@ body {
 .container h1 {
   color: #00c6cf;
   transition: 250ms;
+  text-decoration: none;
 }
 
 .container h1:hover {
